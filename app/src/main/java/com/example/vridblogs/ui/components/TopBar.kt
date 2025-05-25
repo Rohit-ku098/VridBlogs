@@ -1,0 +1,62 @@
+package com.example.vridblogs.ui.components
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.*
+import androidx.compose.material3.ListItemDefaults.contentColor
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import com.example.vridblogs.R
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar(
+    title: String,
+    showBackButton: Boolean = false,
+    onClickNavigation: () -> Unit = {}
+) {
+    TopAppBar(
+        title = {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleLarge.copy(
+                    fontWeight = FontWeight.SemiBold
+                ),
+                color = contentColor
+            )
+        },
+        navigationIcon = {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                if(showBackButton) {
+                    IconButton(
+                        onClick = onClickNavigation
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back Button",
+                            modifier = Modifier.size(30.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                } else {
+                    Image(
+                        painter = painterResource(R.drawable.logo_vrid),
+                        contentDescription = "Logo of Vrid Blogs",
+                        modifier = Modifier.size(70.dp).padding(8.dp)
+                    )
+                }
+            }
+
+        },
+
+    )
+}

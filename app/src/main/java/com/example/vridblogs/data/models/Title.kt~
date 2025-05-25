@@ -1,0 +1,5 @@
+package com.example.vridblogs.data.models
+
+data class Title(
+    val rendered: String
+)
